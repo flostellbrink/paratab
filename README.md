@@ -37,7 +37,7 @@ Even worse now your git diff will look like this:
 -| col 3 is      | right-aligned | $1600 |
 -| col 2 is      | centered      | $12   |
 -| zebra stripes | are neat      | $1    |
-+| Tables        | Are           | Cool  |
++| Tables        | Are           | Cool                        |
 +|-              |:-:            |-:                           |
 +| col 3 is      | right-aligned | and also sort of wide $1600 |
 +| col 2 is      | centered      | $12                         |
@@ -54,7 +54,6 @@ Paratabs will keep columns aligned and the diff clean!
 
 ### End of line comments
 
-All the same problem happen with end of line comments.
 Now I am not sure why you would use them, but I am sure everyone has seen something like this at some point:
 
 ```
@@ -68,7 +67,7 @@ That's not only tedious but will, again, pollute your diffs.
 
 ## How does this work?
 
-Paratabs are simply tab character followed by [variation selector 1](https://en.wikipedia.org/wiki/Variation_Selectors_(Unicode_block)).
+Paratabs are simply a tab character followed by [variation selector 1](https://en.wikipedia.org/wiki/Variation_Selectors_(Unicode_block)).
 
 This means that editors without support for paratabs will simply render them as tabs.
 
