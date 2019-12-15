@@ -1,8 +1,12 @@
 # Paratab
 
+![Aligning things just got easy!](demo.gif)
+
 ## What is this?
 
-Aligned tabs within paragraphs.
+Paratabs are tabs followed by [variation selector 1](https://en.wikipedia.org/wiki/Variation_Selectors_(Unicode_block)).
+
+They align content within a paragraph.
 
 ## Why?
 
