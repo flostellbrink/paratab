@@ -1,0 +1,48 @@
+{
+	"name": "paratab",
+	"description": "Extension for rendering paragraph tabs",
+	"version": "1.0.0",
+	"publisher": "Florian Stellbrink",
+	"license": "MIT",
+	"engines": {
+		"vscode": "^1.32.0"
+	},
+	"repository": {
+		"url": "https://github.com/flostellbrink/paratab"
+	},
+	"categories": [
+		"Other"
+	],
+	"contributes": {
+		"commands": [
+			{
+				"command": "paratab.insert",
+				"title": "Insert Paratab"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "paratab.insert",
+				"key": "ctrl+shift+tab",
+				"mac": "shift+cmd+tab",
+				"when": "editorTextFocus"
+			}
+		]
+	},
+	"activationEvents": [
+		"*"
+	],
+	"main": "./out/extension.js",
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "tslint -p ./",
+		"watch": "tsc -watch -p ./"
+	},
+	"devDependencies": {
+		"@types/node": "^8.9.1",
+		"tslint": "^5.16.0",
+		"typescript": "^3.5.1",
+		"@types/vscode": "^1.32.0"
+	}
+}
