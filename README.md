@@ -11,19 +11,19 @@ Aligned tabs within paragraphs.
 Have you ever tried to write a table in markdown? Did it look like this?
 
 ```md
-| Tables        | Are                                 | Cool  |
-|-              |-                                    |-      |
-| col 3 is      | right-aligned and also sort of wide | $1600 |
-| col 2 is      | centered                            | $12   |
-| zebra stripes | are neat                            | $1    |
+| Tables        | Are           | Cool  |
+|-              |:-:            |-:     |
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      | $12   |
+| zebra stripes | are neat      | $1    |
 ```
 
 What happens if you add more content to a cell? That's right, it gets wider.
 
 ```md
 | Tables        | Are           | Cool  |
-|-              |-              |-      |
-| col 3 is      | right-aligned and also sort of wide | $1600 |
+|-              |:-:            |-:     |
+| col 3 is      | right-aligned | and also sort of wide $1600 |
 | col 2 is      | centered      | $12   |
 | zebra stripes | are neat      | $1    |
 ```
@@ -33,22 +33,22 @@ Even worse now your git diff will look like this:
 
 ```diff
 -| Tables        | Are           | Cool  |
--|-              |-              |-      |
+-|-              |:-:            |-:     |
 -| col 3 is      | right-aligned | $1600 |
 -| col 2 is      | centered      | $12   |
 -| zebra stripes | are neat      | $1    |
-+| Tables        | Are                                 | Cool  |
-+|-              |-                                    |-      |
-+| col 3 is      | right-aligned and also sort of wide | $1600 |
-+| col 2 is      | centered                            | $12   |
-+| zebra stripes | are neat                            | $1    |
++| Tables        | Are           | Cool  |
++|-              |:-:            |-:                           |
++| col 3 is      | right-aligned | and also sort of wide $1600 |
++| col 2 is      | centered      | $12                         |
++| zebra stripes | are neat      | $1                          |
 ```
 
 Paratabs will keep columns aligned and the diff clean!
 
 | Tables	︀| Are	︀| Cool	︀|
-|-	︀|-	︀|-	︀|
-| col 3 is	︀| right-aligned and also sort of wide	︀| $1600	︀|
+|-|:-:|-:|
+| col 3 is	︀| right-aligned	︀| and also sort of wide $1600	︀|
 | col 2 is	︀| centered	︀| $12	︀|
 | zebra stripes	︀| are neat	︀| $1	︀|
 
