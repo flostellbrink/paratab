@@ -1,5 +1,7 @@
 import * as vscode from 'vscode';
 
+type Position = { lastCharacter: number, position: vscode.Position, column: number };
+
 // this method is called when vs code is activated
 export function activate(context: vscode.ExtensionContext) {
 	console.log("Paratab: Activated");
@@ -27,18 +29,25 @@ export function activate(context: vscode.ExtensionContext) {
 
 	function updateDecorations() {
 		if (!activeEditor) return;
-		const text = activeEditor.document.getText();
 
-		let lastPosition: vscode.Position | null = null;
-		let column = 0;
+		let lastPosition = new vscode.Position(0, 0);
+		let column = -1;
 		const columns: number[] = [];
-		const positions: { lastCharacter: number, position: vscode.Position, column: number }[] = [];
+		const positions: Position[] = [];
+		const paratabs: vscode.DecorationOptions[] = [];
+		const text = activeEditor.document.getText();
 		for (let index = text.indexOf(paratab); index !== -1; index = text.indexOf(paratab, index + 1)) {
 			const position = activeEditor.document.positionAt(index);
-			const sameLine = position.line === (lastPosition && lastPosition.line);
-			if (!sameLine) lastPosition = null;
+			for (let line = lastPosition.line; line < position.line; line += 1) {
+				if (activeEditor.document.lineAt(line).isEmptyOrWhitespace) {
+					addParatabs(positions, columns, paratabs);
+					break;
+				}
+			}
+
+			const sameLine = position.line === lastPosition.line;
 			column = sameLine ? column + 1 : 0;
-			const lastCharacter =  (lastPosition && lastPosition.character) || 0;
+			const lastCharacter =  (sameLine && lastPosition.character) || 0;
 			positions.push({ lastCharacter, position, column });
 
 			const indent = position.character - lastCharacter;
@@ -48,7 +57,11 @@ export function activate(context: vscode.ExtensionContext) {
 			lastPosition = position;
 		}
 
-		const paratabs: vscode.DecorationOptions[] = [];
+		addParatabs(positions, columns, paratabs);
+		activeEditor.setDecorations(paratabDecorationType, paratabs);
+	}
+
+	function addParatabs(positions: Position[], columns: number[], paratabs: vscode.DecorationOptions[]) {
 		for (let { lastCharacter, position, column } of positions) {
 			const positionEnd = new vscode.Position(position.line, position.character + 1);
 			const missingIndent = lastCharacter + columns[column] - position.character + extraIndent;
@@ -58,7 +71,8 @@ export function activate(context: vscode.ExtensionContext) {
 			});
 		}
 
-		activeEditor.setDecorations(paratabDecorationType, paratabs);
+		positions.length = 0;
+		columns.length = 0;
 	}
 
 	function triggerUpdateDecorations() {
