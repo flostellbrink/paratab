@@ -2,7 +2,7 @@
 	"name": "paratab",
 	"description": "Extension for rendering paragraph tabs",
 	"version": "1.0.0",
-	"publisher": "Florian Stellbrink",
+	"publisher": "flostellbrink",
 	"license": "MIT",
 	"engines": {
 		"vscode": "^1.32.0"

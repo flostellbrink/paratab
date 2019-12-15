@@ -69,15 +69,6 @@ That's not only tedious but will, again, pollute your diffs.
 
 Paratabs are simply a tab character followed by [variation selector 1](https://en.wikipedia.org/wiki/Variation_Selectors_(Unicode_block)).
 
-This means that editors without support for paratabs will simply render them as tabs.
+This means that editors without support for paratabs will render them as tabs.
 
 Editors with support, such as VS Code with this extension, will instead render a paratab that aligns with other paratabs in the same paragraph.
-
-## Getting started
-
-* `npm install` to initialize the project
-* `npm run watch` to start the compiler in watch mode
-* open this folder in VS Code and press `F5`
-* this will open the `[Extension Development Host]` window, running the extension:
-  * Open any document that contains paratabs.
-  * The extension will decorate paratabs with additional spacing.
