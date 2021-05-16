@@ -1,3 +1,8 @@
+# Disclaimer: Do **NOT** use this.
+
+This is obviously not part of unicode, might have unintended consequences.
+Would strongly recommend not actually using this. But its fun to play with.
+
 # Paratab
 
 ![Aligning things just got easy!](demo.gif)
